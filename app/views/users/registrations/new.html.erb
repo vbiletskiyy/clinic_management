@@ -1,36 +1,40 @@
-<h2>Sign up</h2>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2 class="text-center mb-4">Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "form-signin"}) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "users/shared/error_messages", resource: resource %>
 
-  <div class="form-floating">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, class: "form-control", autofocus: true, autocomplete: "name", required: true %>
+        <div class="form-group">
+          <%= f.label :name, class: 'sr-only' %>
+          <%= f.text_field :name, class: 'form-control form-control-lg', autofocus: true, placeholder: 'Name' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :phone_number, class: 'sr-only' %>
+          <%= f.text_field :phone_number, class: 'form-control form-control-lg', autofocus: true, placeholder: 'Phone number' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password, class: 'sr-only' %>
+          <% if @minimum_password_length %>
+            <small class="form-text text-muted mb-2">(<%= @minimum_password_length %> characters minimum)</small>
+          <% end %>
+          <%= f.password_field :password, class: 'form-control form-control-lg', autocomplete: "new-password", placeholder: 'Password' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password_confirmation, class: 'sr-only' %>
+          <%= f.password_field :password_confirmation, class: 'form-control form-control-lg', autocomplete: "new-password", placeholder: 'Password confirmation' %>
+        </div>
+
+        <%= f.hidden_field :type, value: "Patient" %>
+
+        <%= f.submit "Sign up", class: "btn btn-primary btn-block btn-lg mt-4" %>
+      <% end %>
+
+      <%= render "users/shared/links" %>
+    </div>
   </div>
-
-  <div class="form-floating">
-    <%= f.label :phone_number %><br />
-    <%= f.text_field :phone_number, class: "form-control", autofocus: true, autocomplete: "phone-number", required: true %>
-  </div>
-
-  <div class="form-floating">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, class: "form-control", autocomplete: "new-password", required: true %>
-  </div>
-
-  <div class="form-floating">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "new-password", required: true %>
-  </div>
-
-  <%= f.hidden_field :type, value: "Patient" %>
-
-  <div class="text-center">
-    <%= f.submit "Sign up", class: "btn btn-primary" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>
