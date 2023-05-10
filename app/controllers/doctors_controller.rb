@@ -2,11 +2,11 @@ class DoctorsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @doctors = Doctor.all
+    @result = ::Doctors::Index.new.call(params[:specialties])
   end
 
   def show
-    authorize! :read, current_user
+    @doctor = Doctor.find_by(id: params[:id])
   end
 
   private

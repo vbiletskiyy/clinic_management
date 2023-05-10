@@ -4,5 +4,10 @@
 
 import { application } from "./application"
 
+import FiltersFormController from "./filters_form_controller"
 import FlashController from "./flash_controller"
+import AppointmentDatetime from "./appointment_datetime"
+
+application.register("filters-form", FiltersFormController)
 application.register("flash", FlashController)
+application.register("appointment-datetime", AppointmentDatetime)

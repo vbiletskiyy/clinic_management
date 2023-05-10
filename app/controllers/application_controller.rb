@@ -5,6 +5,16 @@ class ApplicationController < ActionController::Base
     redirect_back(fallback_location: root_path, flash: { error: exception.message }) 
   end
 
+
+  def render_result(result:, path:, notice: nil)
+    if result.save
+      redirect_to path, notice: notice
+    else
+      @errors = result.errors.full_messages
+      render turbo_stream: turbo_stream.update("validation_messages", partial: "shared/errors")
+    end
+  end
+
   private
 
   def configure_permitted_parameters
