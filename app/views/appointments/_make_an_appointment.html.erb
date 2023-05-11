@@ -14,8 +14,6 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <%= turbo_frame_tag "appointments" do%>
-
         <%= form_with url: appointments_path(doctor_id: doctor.id, patient_id: current_user.id), method: :post, id: "appointment-form", data: { controller: "appointment" } do |f| %>
           <div class="modal-body">
             <div class="form-group">
@@ -33,7 +31,6 @@
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <%= f.submit "Make an appointment", class: "btn btn-white text-white", style: "background-color: #09b9aa;" %>
           </div>
-        <% end %>
         <% end %>
       </div>
     </div>

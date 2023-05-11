@@ -12,7 +12,7 @@ module Appointments
 
     def set_appointments
       return Appointment.includes(:patient).where(doctor_id: current_user.id, closed: nil) if doctor?(current_user)
-      return Appointment.includes(:doctor).where(patient_id: current_user.id) if patient?(current_user)
+      return Appointment.includes(doctor: :specialties).where(patient_id: current_user.id) if patient?(current_user)
     end
   end
 end

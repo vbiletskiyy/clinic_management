@@ -1,20 +1,20 @@
 <div class="col-md-9">
   <%= turbo_frame_tag "doctors" do%>
     <div class="row row-cols-md-3">
-      <% doctors.each do |doc| %>
+      <% doctors.each do |doctor| %>
         <div class="col mb-5">
           <div class="card">
-            <%= link_to doctor_path(doc), class: "text-decoration-none text-white fw-bold", data: { turbo: false } do %>
+            <%= link_to doctor_path(doctor), class: "text-decoration-none text-white fw-bold", data: { turbo: false } do %>
               <img src="https://lvivmedicalcenter.com/wp-content/uploads/2022/07/likar-statsionar._01.png" class="card-img-top" alt="...", width="0", height="350">
               <div style="background-color: #09b9aa;">
-                <% doc.specialties.each do |specialty| %>
+                <% doctor.specialties.each do |specialty| %>
                   <div class="card-footer text-center ">
                     <%= specialty.title %>
                   </div>
                 <% end %>
               </div>
             <% end %>
-            <%= doc.name %>
+            <%= doctor.name %>
           </div>
         </div>
       <% end %>

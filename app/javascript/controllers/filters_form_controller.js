@@ -5,6 +5,7 @@ export default class extends Controller {
 
 
   submit() {
-    this.filtersForm.submit()
+    console.log(111)
+    this.filtersFormTarget.submit()
   }
 }

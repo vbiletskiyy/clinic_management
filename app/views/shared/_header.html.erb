@@ -1,16 +1,17 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Clinic Management</a>
+    <%= link_to "Lviv Medical Center", root_path, class: "navbar-brand" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <% if patient? %>
-        <li class="nav-item">
-          <%= link_to "Doctors", doctors_path, class: "nav-link" %>
-        </li>
-        <% elsif current_user %>
+          <li class="nav-item">
+            <%= link_to "Doctors", doctors_path, class: "nav-link" %>
+          </li>
+        <% end %>
+        <% if current_user%>
           <li class="nav-item">
             <%= link_to "Appointments", appointments_path, class: "nav-link" %>
           </li>
@@ -27,7 +28,7 @@
             <% end %>
           </li>
           <li class="nav-item">
-            <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+            <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-secondary" %>
           </li>
         <% else %>
           <li class="nav-item">

@@ -4,6 +4,7 @@ class DoctorsController < ApplicationController
 
   def index
     @result = ::Doctors::Index.new.call(params[:specialties])
+    @pagy, @doctors = pagy(@result[:doctors])
   end
 
   def show

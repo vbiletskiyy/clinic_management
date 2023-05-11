@@ -2,7 +2,9 @@ class AppointmentsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @appointments = ::Appointments::Index.new.call(current_user)
+    appointments = ::Appointments::Index.new.call(current_user)
+    @pagy, @appointments = pagy(appointments)
+
   end
 
   def create
