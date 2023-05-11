@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
 
   def render_result(result:, path:, notice: nil)
-    if result.save
+    if result
       redirect_to path, notice: notice
     else
       @errors = result.errors.full_messages
@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if resource.is_a? Doctor
-      doctor_profile_path
+      doctor_path(current_user)
     elsif resource.is_a? Patient
       patient_profile_path
     else

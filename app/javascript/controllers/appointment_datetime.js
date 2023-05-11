@@ -1,7 +1,7 @@
 import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
-  static targets = ['dateField', 'timeField', 'appointmentErrors']
+  static targets = ['dateField']
 
   connect () {
     const today = new Date().toISOString().split('T')[0]

@@ -15,45 +15,8 @@
         <% if @doctor.details["biography"].present? %>
           <p><%= @doctor.details["biography"] %></p>
         <% end %>
-        <%= button_tag "Make an appointment",
-          type: "button",
-          class: "btn btn-white text-white",
-          style: "background-color: #09b9aa;",
-          data: {
-            "bs-toggle": "modal",
-            "bs-target": "#exampleModal"
-          } %>
       </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Lviv Medical Center</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <%= form_with url: appointments_path(doctor_id: @doctor.id, patient_id: current_user.id), method: :post, id: "appointment-form", data: { controller: "appointment-datetime" } do |f| %>
-          <div class="modal-body">
-            <div class="form-group">
-              <label for="appointment-date">Date:</label>
-              <%= f.date_field :date, class: "form-control", required: true, data: { "appointment-datetime-target": "dateField" } %>
-            </div>
-            <div class="form-group">
-              <label for="appointment-time">Time:</label>
-              <%= f.time_field :time, class: "form-control", required: true, data: { "appointment-datetime-target": "timeField" } %>
-            </div>
-          </div>
-          <turbo-frame id="validation_messages"></turbo-frame>
-          <%= render 'shared/errors' %> 
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <%= f.submit "Make an appointment", class: "btn btn-white text-white", style: "background-color: #09b9aa;" %>
-          </div>
-        <% end %>
-      </div>
+      <%= render partial: "doctors/make_an_appointment", locals: {doctor: @doctor} if patient? %>
     </div>
   </div>
 </div>

@@ -2,8 +2,13 @@ class DoctorAbility
   include CanCan::Ability
   
   def initialize(user)
-    return unless user.is_a?(Doctor) && user.present?
+    user ||= User.new # guest user
 
-    can :read, Doctor
+    if user.is_a? Patient
+      can :show, Doctor
+      can :index, Doctor
+    elsif user.is_a? Doctor
+      can :show, Doctor, id: user.id
+    end
   end
 end

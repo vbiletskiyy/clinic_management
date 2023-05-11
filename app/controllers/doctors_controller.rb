@@ -1,5 +1,6 @@
 class DoctorsController < ApplicationController
   before_action :authenticate_user!
+  load_and_authorize_resource
 
   def index
     @result = ::Doctors::Index.new.call(params[:specialties])

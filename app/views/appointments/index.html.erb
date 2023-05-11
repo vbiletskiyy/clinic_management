@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>Appointments</h1>
+  <div class="row">
+    <% if @appointments.present? %>
+      <% @appointments.each do |appointment| %>
+        <div class="col-md-4 pt-3 mb-3">
+          <div class="card">
+            <img src="https://lvivmedicalcenter.com/wp-content/uploads/2022/07/likar-statsionar._01.png" class="card-img-top" alt="...", width="10", height="450">
+            <div class="card-body">
+              <h5 class="card-title"><%= if doctor?
+                                          appointment.patient.name
+                                        else
+                                          appointment.doctor.name
+                                        end %></h5>
+              <p class="card-text">Date and Time: <%= appointment.date.strftime("%D") %> at <%= appointment.time.strftime("%I:%M %p") %></p>
+            </div>
+              <div class="card-footer">
+                <%= render partial: "give_recommendation", locals: {appointment: appointment} if doctor? %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p>You have no appointments scheduled.</p>
+    <% end %>
+  </div>
+</div>

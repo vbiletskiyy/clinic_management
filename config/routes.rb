@@ -6,10 +6,7 @@ Rails.application.routes.draw do
     get '/profile', to: 'patients#show'
   end
 
-  scope '/doctor', as: 'doctor' do
-    get '/profile', to: 'doctors#show'
-  end
-
   resources :doctors
+  resources :patients
   resources :appointments
 end

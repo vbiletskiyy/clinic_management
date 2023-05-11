@@ -1,0 +1,31 @@
+<%= button_tag "Give a recommendation",
+  class: "btn btn-white text-white",
+  style: "background-color: #09b9aa;",
+  data: {
+    "bs-toggle": "modal",
+    "bs-target": "#exampleModal"
+} %>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Lviv Medical Center</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_with url: appointment_path(appointment.id), method: :patch, id: "recommendation-form" do |f| %>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="appointment-date">Recommendation:</label>
+              <%= f.text_area :recommendation, rows: 10, class: "form-control" %>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <%= f.submit "Give a recommendation", class: "btn btn-white text-white", style: "background-color: #09b9aa;" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
