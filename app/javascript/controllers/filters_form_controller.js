@@ -7,8 +7,4 @@ export default class extends Controller {
   submit() {
     this.filtersForm.submit()
   }
-
-  get filtersForm() {
-    return this.element.querySelector("form")
-  }
 }

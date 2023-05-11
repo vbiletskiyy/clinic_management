@@ -14,11 +14,13 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <%= form_with url: appointments_path(doctor_id: doctor.id, patient_id: current_user.id), method: :post, id: "appointment-form", data: { controller: "appointment-datetime" } do |f| %>
+        <%= turbo_frame_tag "appointments" do%>
+
+        <%= form_with url: appointments_path(doctor_id: doctor.id, patient_id: current_user.id), method: :post, id: "appointment-form", data: { controller: "appointment" } do |f| %>
           <div class="modal-body">
             <div class="form-group">
               <label for="appointment-date">Date:</label>
-              <%= f.date_field :date, class: "form-control", required: true, data: { "appointment-datetime-target": "dateField" } %>
+              <%= f.date_field :date, class: "form-control", required: true, data: { appointment_target: "dateField" } %>
             </div>
             <div class="form-group">
               <label for="appointment-time">Time:</label>
@@ -31,6 +33,7 @@
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <%= f.submit "Make an appointment", class: "btn btn-white text-white", style: "background-color: #09b9aa;" %>
           </div>
+        <% end %>
         <% end %>
       </div>
     </div>

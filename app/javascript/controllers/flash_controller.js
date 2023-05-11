@@ -7,7 +7,6 @@ export default class extends Controller {
   }
   closeFlash () {
     const flash = document.getElementsByClassName("alert")
-    console.log(flash)
     setTimeout(function(){
       flash[0].remove();
     }, 2000);

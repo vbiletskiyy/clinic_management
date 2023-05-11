@@ -16,7 +16,7 @@
           <p><%= @doctor.details["biography"] %></p>
         <% end %>
       </div>
-      <%= render partial: "doctors/make_an_appointment", locals: {doctor: @doctor} if patient? %>
+      <%= render partial: "appointments/make_an_appointment", locals: {doctor: @doctor} if patient? %>
     </div>
   </div>
 </div>

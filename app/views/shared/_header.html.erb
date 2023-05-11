@@ -10,13 +10,7 @@
         <li class="nav-item">
           <%= link_to "Doctors", doctors_path, class: "nav-link" %>
         </li>
-        <li class="nav-item">
-          <%= link_to "Appointments", appointments_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Recommendations", doctors_path, class: "nav-link" %>
-        </li>
-        <% elsif doctor? %>
+        <% elsif current_user %>
           <li class="nav-item">
             <%= link_to "Appointments", appointments_path, class: "nav-link" %>
           </li>
