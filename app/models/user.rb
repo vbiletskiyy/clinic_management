@@ -2,7 +2,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :authenticatable, :validatable, :authentication_keys => [:phone_number]
   validate :validate_phone_number
   validates :name, presence: true
-  
+  has_one_attached :avatar
+
   def email_changed?
     false
   end
