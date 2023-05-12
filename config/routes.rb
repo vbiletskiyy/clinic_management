@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get '/profile', to: 'patients#show'
   end
 
-  resources :doctors
-  resources :patients
-  resources :appointments
+  resources :doctors, only: [:index, :show]
+  resources :patients, only: [:show]
+  resources :appointments, only: [:index, :create, :update]
 end
