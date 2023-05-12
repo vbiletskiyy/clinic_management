@@ -7,7 +7,7 @@ ActiveAdmin.register Doctor do
     column :name
     column :phone_number
     column :avatar do |doctor|
-      image_tag doctor.avatar, size: "100x100"     if doctor.avatar.attached?
+      image_tag doctor.avatar, size: "100x100" if doctor.avatar.attached?
     end
     column :education do |doctor|
       doctor.details["education"]
@@ -26,7 +26,7 @@ ActiveAdmin.register Doctor do
   form do |f|
     f.inputs "Doctor Details" do
       f.input :phone_number
-      f.input :avatar
+      f.input :avatar, as: :file
       f.inputs details: "Details", for: :details do |d|
         d.input :education, input_html: { value: "#{doctor.details['education']}" }
         d.input :biography, input_html: { value: "#{doctor.details['biography']}" }
