@@ -1,0 +1,35 @@
+<div class="container">
+  <h1>Appointments</h1>
+  <div class="row">
+    <% if @appointments.present? %>
+      <% @appointments.each do |appointment| %>
+        <div class="col-md-3 pt-3 mb-3">
+          <div class="card">
+            <% if patient? %>
+              <%= avatar_image_tag(appointment.doctor.avatar) %>
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= if doctor?
+                                          appointment.patient.name
+                                        else
+                                          "#{appointment.doctor.name} (#{appointment.doctor.specialties.map(&:title).join(', ')})"
+                                        end %></h5>
+              <% if doctor? %>
+                <p class="card-text">Patient symptoms: <%= appointment.description.present? ? appointment.description : "No description provided" %></p>
+              <% end %>
+              <p class="card-text">Date and Time: <%= appointment.date.strftime("%D") %> at <%= appointment.time.strftime("%I:%M %p") %></p>
+            </div>
+              <div class="card-footer">
+                <%= render partial: "give_recommendation", locals: {appointment: appointment} if doctor? %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="mb-5">
+        <%== pagy_bootstrap_nav(@pagy) %>
+      </div>
+    <% else %>
+      <p>You have no appointments scheduled.</p>
+    <% end %>
+  </div>
+</div>

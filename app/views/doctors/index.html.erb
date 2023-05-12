@@ -1,0 +1,21 @@
+<div class="container pt-5">
+  <h1>Doctors</h1>
+  <div class="row">
+    <div class="col-md-3">
+      <h2>Filter by specialty</h2>
+      <div data-controller="filters-form">
+        <%= form_tag doctors_path, method: :get, data: { turbo_frame: "doctors", filters_form_target: "filtersForm" } do %>
+          <% @result[:specialties].each do |specialty| %>
+            <%= check_box_tag "specialties[]", specialty.title, params[:specialties]&.include?(specialty.title),
+              data: {
+                action: "change->filters-form#submit"
+              } %>
+            <%= label_tag "specialty_#{specialty.id}", specialty.title %><br>
+          <% end %>
+        <% end %>
+        <%= link_to "Uncheck all", doctors_path, class: "text-decoration-none text-dark fw-bold" %>
+      </div>
+    </div>
+    <%== render partial: 'doctor', locals: {doctors: @doctors} %>
+  </div>
+</div>

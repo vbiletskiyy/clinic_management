@@ -1,0 +1,25 @@
+<div class="col-md-9">
+  <%= turbo_frame_tag "doctors" do%>
+    <div class="row row-cols-md-3">
+      <% doctors.each do |doctor| %>
+        <div class="col mb-5">
+          <div class="card">
+              <%= link_to doctor_path(doctor), class: "text-decoration-none text-white fw-bold", data: { turbo: false } do %>
+              <%= avatar_image_tag(doctor.avatar) %>
+              <div style="background-color: #09b9aa;">
+                <% doctor.specialties.each do |specialty| %>
+                  <div class="card-footer text-center ">
+                    <%= specialty.title %>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+            <div class="ms-4">
+              <%= doctor.name %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
