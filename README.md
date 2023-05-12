@@ -1,24 +1,44 @@
-# README
+# Simple clinic management app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Visit website: https://enigmatic-lowlands-09671.herokuapp.com/
+## DB Schema
+![db](./app/assets/images/db_diagram.jpg)
 
-Things you may want to cover:
+## Installation
+Follow these easy steps to install and start the app:
 
-* Ruby version
+### Prerequisites
+The setups steps expect following tools installed on the system.
 
-* System dependencies
+* Github
+* Docker
 
-* Configuration
+### Check out the repository
+```git clone https://github.com/vbiletskiyy/clinic_management.git```
 
-* Database creation
+### Open cd
+```cd clinic_management```
 
-* Database initialization
+### Set up and start Rails app with Docker
+```docker-compose build```
 
-* How to run the test suite
+```docker-compose up```
 
-* Services (job queues, cache servers, search engines, etc.)
+Use Ctrl-C to stop
+## To get an interactive shell with docker-compose run:
+```docker-compose run --rm web bash```
 
-* Deployment instructions
+Now you can work inside the container as if you were just using Rails and Ruby on your local machine
 
-* ...
+Install the gems required by the application:
+
+```bundle install```
+
+## Create, setup and seeding the database
+```rails db:create```
+
+```rails db:migrate```
+
+```rails db:seed```
+## Test
+Run ```rspec``` in the terminal
