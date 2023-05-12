@@ -3,7 +3,7 @@
   <div class="row">
     <% if @appointments.present? %>
       <% @appointments.each do |appointment| %>
-        <div class="col-md-4 pt-3 mb-3">
+        <div class="col-md-3 pt-3 mb-3">
           <div class="card">
             <% if patient? %>
               <%= avatar_image_tag(appointment.doctor.avatar) %>
