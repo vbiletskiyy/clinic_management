@@ -1,12 +1,15 @@
 FROM ruby:3.1.2
 
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+RUN curl https://deb.nodesource.com/setup_19.x | bash
+RUN curl https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update && apt-get install -y nodejs yarn
 
 ENV PATH="/usr/local/bundle/bin:${PATH}"
 
 WORKDIR /app
 
-COPY Gemfile* /app/
+COPY Gemfile Gemfile.lock ./
 
 RUN bundle install
 
