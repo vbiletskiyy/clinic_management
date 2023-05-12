@@ -6,6 +6,13 @@ FactoryBot.define do
 
     trait :doctor do
       type { 'Doctor' }
+      details {
+        {
+          education: FFaker::Education.major,
+          experience: FFaker::Education.degree,
+          biography: FFaker::Lorem.paragraph
+        }
+      }
     end
 
     trait :patient do

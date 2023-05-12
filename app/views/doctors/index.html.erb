@@ -16,6 +16,6 @@
         <%= link_to "Uncheck all", doctors_path, class: "text-decoration-none text-dark fw-bold" %>
       </div>
     </div>
-    <%== render partial: 'doctor', locals: {doctors: @doctors} %>
+    <%= render partial: 'doctor', locals: {pagy: @pagy, doctors: @doctors} %>
   </div>
 </div>

@@ -9,7 +9,7 @@ module Doctors
     private
     
     def find_doctors
-      doctors = Doctor.includes(:specialties)
+      doctors = Doctor.includes(:specialties).with_attached_avatar
 
       return doctors unless @params
 
