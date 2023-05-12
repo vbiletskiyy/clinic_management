@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include ApplicationHelper
   include Pagy::Backend
 
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -7,9 +8,8 @@ class ApplicationController < ActionController::Base
     redirect_back(fallback_location: root_path, flash: { error: exception.message }) 
   end
 
-
   def render_result(result:, path:, notice: nil)
-    if result
+    if success?(result)
       redirect_to path, notice: notice
     else
       @errors = result.errors.full_messages

@@ -6,7 +6,9 @@ module Appointments
     end
 
     def create_appointment
-      Appointment.create(@params)
+      appointment = Appointment.new(@params)
+      appointment.save
+      appointment
     end
   end
 end

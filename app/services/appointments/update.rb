@@ -16,6 +16,7 @@ module Appointments
       else
         appointment.update(params)
       end
+      appointment
     end
   end
 end

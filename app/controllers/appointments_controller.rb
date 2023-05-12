@@ -4,7 +4,6 @@ class AppointmentsController < ApplicationController
   def index
     appointments = ::Appointments::Index.new.call(current_user)
     @pagy, @appointments = pagy(appointments)
-
   end
 
   def create
